@@ -26,6 +26,7 @@ function getConfig(): NPMConfig {
   const port = process.env.NPM_PORT;
   const email = process.env.NPM_EMAIL;
   const password = process.env.NPM_PASSWORD;
+  const useHttps = process.env.NPM_HTTPS?.toLowerCase() === "true";
 
   if (!host || !email || !password) {
     throw new Error(
@@ -35,9 +36,10 @@ function getConfig(): NPMConfig {
 
   return {
     host,
-    port: parseInt(port || "81", 10),
+    port: port ? parseInt(port, 10) : undefined,
     email,
     password,
+    useHttps,
   };
 }
 

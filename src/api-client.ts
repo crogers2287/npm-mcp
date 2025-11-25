@@ -5,9 +5,10 @@
 
 export interface NPMConfig {
   host: string;
-  port: number;
+  port?: number;
   email: string;
   password: string;
+  useHttps?: boolean;
 }
 
 export interface TokenResponse {
@@ -261,7 +262,17 @@ export class NPMApiClient {
   }
 
   private get baseUrl(): string {
-    return `http://${this.config.host}:${this.config.port}/api`;
+    const protocol = this.config.useHttps ? "https" : "http";
+    const port = this.config.port;
+    // If using HTTPS on standard port 443, don't include port in URL
+    if (protocol === "https" && (!port || port === 443)) {
+      return `${protocol}://${this.config.host}/api`;
+    }
+    // If using HTTP on standard port 80, don't include port in URL
+    if (protocol === "http" && (!port || port === 80)) {
+      return `${protocol}://${this.config.host}/api`;
+    }
+    return `${protocol}://${this.config.host}:${port}/api`;
   }
 
   private async ensureAuthenticated(): Promise<void> {

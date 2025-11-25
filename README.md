@@ -33,10 +33,11 @@ Set the following environment variables:
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `NPM_HOST` | Yes | - | NPM server hostname or IP |
-| `NPM_PORT` | No | `81` | NPM API port |
+| `NPM_HOST` | Yes | - | NPM server hostname (e.g., `npm.example.com`) |
+| `NPM_PORT` | No | - | NPM API port (omit for standard 80/443) |
 | `NPM_EMAIL` | Yes | - | Admin email for authentication |
 | `NPM_PASSWORD` | Yes | - | Admin password |
+| `NPM_HTTPS` | No | `false` | Set to `true` for HTTPS connections |
 
 ## Claude Desktop Configuration
 
@@ -49,8 +50,8 @@ Add to your Claude Desktop config (`~/.config/claude/claude_desktop_config.json`
       "command": "node",
       "args": ["/path/to/npm-mcp/dist/index.js"],
       "env": {
-        "NPM_HOST": "your-npm-host.local",
-        "NPM_PORT": "81",
+        "NPM_HOST": "npm.example.com",
+        "NPM_HTTPS": "true",
         "NPM_EMAIL": "admin@example.com",
         "NPM_PASSWORD": "your-password"
       }
@@ -70,8 +71,8 @@ Add to your MCP settings (`~/.claude/settings.json`):
       "command": "node",
       "args": ["/path/to/npm-mcp/dist/index.js"],
       "env": {
-        "NPM_HOST": "your-npm-host.local",
-        "NPM_PORT": "81",
+        "NPM_HOST": "npm.example.com",
+        "NPM_HTTPS": "true",
         "NPM_EMAIL": "admin@example.com",
         "NPM_PASSWORD": "your-password"
       }
