@@ -13,7 +13,37 @@ An MCP (Model Context Protocol) server for managing [Nginx Proxy Manager](https:
 - **Users**: Manage NPM user accounts
 - **System**: View audit logs, settings, and host reports
 
-## Installation
+## Quick Install (Recommended)
+
+The easiest way to get started is with the automated installer:
+
+```bash
+# Clone the repository
+git clone https://github.com/crogers2287/npm-mcp.git
+cd npm-mcp
+
+# Run the installer
+./install.sh
+```
+
+The installer will:
+1. Check prerequisites (Node.js 18+, npm, jq)
+2. Install dependencies and build the project
+3. Prompt for your NPM connection details
+4. Test the connection to your NPM instance
+5. Automatically configure Claude Code
+
+### Installer Options
+
+```bash
+./install.sh              # Run interactive installation
+./install.sh --help       # Show help
+./install.sh --uninstall  # Remove NPM MCP configuration
+```
+
+## Manual Installation
+
+If you prefer to configure manually:
 
 ```bash
 # Clone the repository
